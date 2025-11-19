@@ -4,16 +4,66 @@
 
 Stata syntax highlighting for JupyterLab 4+.
 
+## Forking and Customization
+
+This is a customized fork of the original repository. To use your own fork:
+
+1. **Fork the repository on GitHub**: Go to the [original repository](https://github.com/lutherbu/jupyterlab_stata_highlight3) and click "Fork" to create your own copy.
+
+2. **Clone your fork**: Clone your forked repository to your local machine.
+
+3. **Make your customizations**: Edit the code, styling, or configuration as needed.
+
+4. **Push your changes**: Push your customizations to your GitHub fork.
+
 ## Requirements
 
 - JupyterLab >= 4.0.0
+- Node.js (required for building the extension during installation)
+- Python >= 3.8
 
 ## Install
 
-To install the extension, execute:
+### Install from GitHub (Recommended for Customized Version)
+
+To install this customized version directly from GitHub, execute:
+
+```bash
+pip install git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
+```
+
+Or for a specific branch/tag:
+
+```bash
+pip install git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git@BRANCH_NAME
+```
+
+**Note:** 
+- The package will automatically build the JupyterLab extension during installation. Make sure you have Node.js installed (the build process requires it).
+- After installation, you may need to rebuild JupyterLab: `jupyter lab build`
+
+### Install from PyPI (Original Version)
+
+To install the original extension from PyPI, execute:
 
 ```bash
 pip install jupyterlab_stata_highlight3
+```
+
+### Install in Conda Environment
+
+To install in a conda environment:
+
+```bash
+conda activate your_environment_name
+pip install git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
+```
+
+Or using conda with pip:
+
+```bash
+conda install -c conda-forge pip
+pip install git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
 ```
 
 ## Uninstall
