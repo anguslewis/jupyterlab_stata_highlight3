@@ -42,7 +42,7 @@ export default [
         start: [
           // Magic commands (JupyterLab magic commands starting with %)
           {
-            regex: /%.*$/,
+            regex: /%\w+/,
             token: color_translator['string-2'],
             sol: true
           },
