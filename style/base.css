@@ -23,4 +23,5 @@
 
 .cm-property {
   color: var(--jp-mirror-editor-property-color);
+  font-weight: bold;
 }
