@@ -20,3 +20,7 @@
 .cm-string-2 {
   color: var(--jp-mirror-editor-string-2-color);
 }
+
+.cm-property {
+  color: var(--jp-mirror-editor-property-color);
+}

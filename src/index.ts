@@ -87,7 +87,7 @@ export default [
           // Local/Global variable declarations
           {
             regex: /(\s*)(local|global)(\s+)/,
-            token: ['', color_translator['keyword'], ''],
+            token: ['', color_translator['property'], ''],
             sol: true,
             push: 'local_global_var'
           },

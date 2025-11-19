@@ -2140,7 +2140,8 @@ const color_translator = {
   'variable-2': 'variable-2',
   keyword: 'keyword',
   def: 'def',
-  'string-2': 'string-2'
+  'string-2': 'string-2',
+  property: 'property'
 };
 
 export { builtins_str, builtins_fun_str, color_translator };
