@@ -66,6 +66,92 @@ conda install -c conda-forge pip
 pip install git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
 ```
 
+### Install on Remote Server
+
+When installing on a remote server, you need Node.js installed for the build process. Here are the steps:
+
+**Option 1: Install Node.js via Conda (Recommended)**
+
+```bash
+conda activate your_environment_name
+conda install -c conda-forge nodejs
+pip install git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
+jupyter lab build
+```
+
+Note: `npm` is included with `nodejs` in conda-forge, so you only need to install `nodejs`.
+
+**Option 2: Install Node.js via System Package Manager**
+
+For Ubuntu/Debian:
+```bash
+sudo apt-get update
+sudo apt-get install -y nodejs npm
+```
+
+For CentOS/RHEL:
+```bash
+sudo yum install -y nodejs npm
+```
+
+Then install the package:
+```bash
+pip install git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
+jupyter lab build
+```
+
+**Option 3: Use Node Version Manager (nvm)**
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+nvm use --lts
+pip install git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
+jupyter lab build
+```
+
+**Troubleshooting:**
+
+First, check if Node.js is installed:
+```bash
+node --version
+npm --version
+```
+
+If these commands fail, Node.js is not installed. Use one of the options above to install it.
+
+If you get errors during installation, ensure:
+1. Node.js is installed: `node --version` and `npm --version` should work
+2. JupyterLab is installed: `jupyter lab --version`
+3. Build tools are available (usually included with Node.js)
+4. You have write permissions in the installation directory
+
+If the build still fails, try installing with verbose output to see the full error:
+```bash
+pip install --verbose git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
+```
+
+**Common Errors:**
+
+1. **"Installing build dependencies: finished with status 'error'"**
+   - This usually means Node.js is missing. Install Node.js first, then retry the pip install command.
+
+2. **"failed to build pyzmq" or "C99 mode" errors**
+   - This happens when pyzmq (a JupyterLab dependency) can't be built from source due to an old C compiler. The solution is to install pyzmq and JupyterLab via conda (which provides pre-built binaries), install build dependencies, then use `--no-build-isolation`:
+   ```bash
+   conda activate your_environment_name
+   conda install -c conda-forge pyzmq jupyterlab nodejs
+   pip install hatchling hatch-jupyter-builder hatch-nodejs-version
+   pip install --no-build-isolation git+https://github.com/anguslewis/jupyterlab_stata_highlight3.git
+   jupyter lab build
+   ```
+   - **Important**: 
+     - Always install `pyzmq` and `jupyterlab` via conda on remote servers to avoid compilation issues
+     - Install build dependencies (`hatchling`, `hatch-jupyter-builder`, `hatch-nodejs-version`) before using `--no-build-isolation`
+     - Use `--no-build-isolation` flag with pip to tell it to use the conda-installed packages instead of trying to build them in an isolated environment
+     - The pip install should only be used for your custom extension
+
 ## Uninstall
 
 To remove the extension, execute:

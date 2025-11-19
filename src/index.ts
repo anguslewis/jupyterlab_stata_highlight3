@@ -96,7 +96,7 @@ export default [
             sol: true
           },
           {
-            regex: new RegExp('(\\W)' + builtins_fun_str),
+            regex: new RegExp('(\\W+)' + builtins_fun_str),
             token: ['', color_translator['def']]
           },
           // change null to "" in TypeScript
