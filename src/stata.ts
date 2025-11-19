@@ -2137,7 +2137,7 @@ const builtins_fun_str = '(' + builtins_functions.join('|') + ')(?=\\()';
 const color_translator = {
   comment: 'comment',
   string: 'string',
-  'variable-2': 'def',
+  'variable-2': 'variable-2',
   keyword: 'keyword',
   def: 'def',
   'string-2': 'string-2'

@@ -84,6 +84,13 @@ export default [
             push: 'macro_global'
           },
 
+          // Local/Global variable declarations
+          {
+            regex: /\s*(local|global)\s+/,
+            token: ['', color_translator['keyword'], ''],
+            sol: true,
+            push: 'local_global_var'
+          },
           // Keywords
           // There are two separate dictionaries because the `\b` at the beginning of the regex seemed not to work. So instead, I either match the preceding space before the keyword or require the keyword to be at beginning of the string. I think this necessitates two different strings.
           {
@@ -175,6 +182,25 @@ export default [
             token: color_translator['variable-2'],
             pop: true
           },
+          { regex: /./, token: color_translator['variable-2'] }
+        ],
+        local_global_var: [
+          // Match local macros within variable name (e.g., `local')
+          {
+            regex: /`[^']*'/,
+            token: color_translator['variable-2']
+          },
+          // Match global macros within variable name (e.g., ${global})
+          {
+            regex: /\$\{[^}]*\}/,
+            token: color_translator['variable-2']
+          },
+          // Match word characters (including underscore) as part of variable name
+          { regex: /\w+/, token: color_translator['variable-2'] },
+          // Pop on whitespace or end of line
+          { regex: /\s/, token: '', pop: true },
+          { regex: /$/, token: '', pop: true },
+          // Match anything else (shouldn't happen in valid variable names, but handle gracefully)
           { regex: /./, token: color_translator['variable-2'] }
         ],
         languageData: {
