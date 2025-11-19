@@ -86,7 +86,7 @@ export default [
 
           // Local/Global variable declarations
           {
-            regex: /\s*(local|global)\s+/,
+            regex: /(\s*)(local|global)(\s+)/,
             token: ['', color_translator['keyword'], ''],
             sol: true,
             push: 'local_global_var'
@@ -197,11 +197,10 @@ export default [
           },
           // Match word characters (including underscore) as part of variable name
           { regex: /\w+/, token: color_translator['variable-2'] },
-          // Pop on whitespace or end of line
+          // Pop on whitespace
           { regex: /\s/, token: '', pop: true },
-          { regex: /$/, token: '', pop: true },
-          // Match anything else (shouldn't happen in valid variable names, but handle gracefully)
-          { regex: /./, token: color_translator['variable-2'] }
+          // Pop on end of line - match any remaining characters to end of line
+          { regex: /[^\n]*$/, token: color_translator['variable-2'], pop: true }
         ],
         languageData: {
           name: 'stata'
