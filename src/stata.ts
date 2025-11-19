@@ -2132,11 +2132,12 @@ const builtins_functions = [
 const builtins_fun_str = '(' + builtins_functions.join('|') + ')(?=\\()';
 
 const color_translator = {
-  comment: 'builtin',
+  comment: 'comment',
   string: 'string',
-  'variable-2': 'variable-2',
-  keyword: 'string-2',
-  def: 'def'
+  'variable-2': 'def',
+  keyword: 'keyword',
+  def: 'def',
+  'string-2': 'string-2'
 };
 
 export { builtins_str, builtins_fun_str, color_translator };

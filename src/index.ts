@@ -40,6 +40,12 @@ export default [
       const stataMode = simpleMode({
         // The start state contains the rules that are initially used
         start: [
+          // Magic commands (JupyterLab magic commands starting with %)
+          {
+            regex: /%.*$/,
+            token: color_translator['string-2'],
+            sol: true
+          },
           // Comments
           {
             regex: /\/\/\/?.*$/,
